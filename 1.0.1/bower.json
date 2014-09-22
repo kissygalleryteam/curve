@@ -1,0 +1,13 @@
+{
+    "name": "curve",
+    "version": "1.0.1",
+    "main": "index.js",
+    "ignore": [
+        "**/*",
+        "!index.js",
+        "!index.css",
+        "!lib/**/*"
+    ],
+    "dependencies": {
+    }
+}
