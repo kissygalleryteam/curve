@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Curve的demo</title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.6/seed-min.js" charset="utf-8"></script>
+    <style>
+        @media screen and (max-width: 1024px) {
+            .ks-curve{
+                -webkit-transform : scale(0.7);
+                transform : scale(0.7);
+            }
+        }
+        @media screen and (max-width: 724px) {
+            .ks-curve{
+                -webkit-transform : scale(0.5);
+                transform : scale(0.5);
+            }
+        }
+
+        .ks-curve{
+            width: 1000px;
+            height: 508px;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid #000;
+        }
+        .ks-curve-item{
+            display: none;
+            float: left;
+            padding: 1px;
+            border-bottom : 1px solid #999;
+        }
+        .ks-curve-item-child{
+            width: 150px;
+            min-height: 100px;
+            border-top : 1px solid #999;
+        }
+    </style>
+</head>
+<body>
+<div class="ks-curve">
+    <div class="ks-curve-stage">
+        <div class="ks-curve-item">
+            <div class="ks-curve-item-child">周日</div>
+            <div class="ks-curve-item-child">31</div>
+            <div class="ks-curve-item-child">7</div>
+            <div class="ks-curve-item-child">21</div>
+            <div class="ks-curve-item-child">28</div>
+        </div>
+        <div class="ks-curve-item">
+            <div class="ks-curve-item-child">周一</div>
+            <div class="ks-curve-item-child">1</div>
+            <div class="ks-curve-item-child">8</div>
+            <div class="ks-curve-item-child">15</div>
+            <div class="ks-curve-item-child">22</div>
+        </div>
+        <div class="ks-curve-item">
+            <div class="ks-curve-item-child">周二</div>
+            <div class="ks-curve-item-child">2</div>
+            <div class="ks-curve-item-child">9</div>
+            <div class="ks-curve-item-child">16</div>
+            <div class="ks-curve-item-child">9</div>
+        </div>
+        <div class="ks-curve-item">
+            <div class="ks-curve-item-child">周三</div>
+            <div class="ks-curve-item-child">3</div>
+            <div class="ks-curve-item-child">10</div>
+            <div class="ks-curve-item-child">17</div>
+            <div class="ks-curve-item-child">24</div>
+        </div>
+        <div class="ks-curve-item">
+            <div class="ks-curve-item-child">周四</div>
+            <div class="ks-curve-item-child">4</div>
+            <div class="ks-curve-item-child">11</div>
+            <div class="ks-curve-item-child">18</div>
+            <div class="ks-curve-item-child">25</div>
+        </div>
+        <div class="ks-curve-item">
+            <div class="ks-curve-item-child">周五</div>
+            <div class="ks-curve-item-child">5</div>
+            <div class="ks-curve-item-child">12</div>
+            <div class="ks-curve-item-child">19</div>
+            <div class="ks-curve-item-child">26</div>
+        </div>
+        <div class="ks-curve-item">
+            <div class="ks-curve-item-child">周六</div>
+            <div class="ks-curve-item-child">6</div>
+            <div class="ks-curve-item-child">13</div>
+            <div class="ks-curve-item-child">20</div>
+            <div class="ks-curve-item-child">27</div>
+        </div>
+    </div>
+</div>
+<script>
+    var S = KISSY;
+    if (S.Config.debug) {
+        var debugPath = "../build";
+        S.config({
+            packages:[
+                {
+                    name:"kg/curve/1.0.0",
+                    path:debugPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+
+    S.use('kg/curve/1.0.0/index', function (S, Curve) {
+        new Curve({
+            perspective : 300
+        });
+    })
+
+</script>
+</body>
+</html>
