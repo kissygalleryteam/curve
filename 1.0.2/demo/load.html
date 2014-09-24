@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Curve的demo</title>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.6/seed-min.js" charset="utf-8"></script>
+    <style>
+        .ks-curve{
+            width: 1000px;
+            height:458px;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid #000;
+        }
+        .ks-curve-item{
+            float: left;
+            border: 1px solid #a0a0a0;
+            -webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(250, 250, 250, 0.1)));
+        }
+        .item-child{
+            height: 150px;
+            width: 150px;
+            border: 1px solid #a0a0a0;
+            background: url(http://gd4.alicdn.com/bao/uploaded/i4/TB1z0v4FVXXXXb7XVXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg);
+        }
+        #curveRange{
+            width: 150px;
+            margin: 10px auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<p>拖动进度条，动态加载内容</p>
+
+<div class="ks-curve">
+    <div class="ks-curve-stage">
+        <div class="ks-curve-item">
+            <div class="item-child">1</div>
+            <div class="item-child"></div>
+            <div class="item-child"></div>
+        </div>
+        <div class="ks-curve-item">
+            <div class="item-child">2</div>
+            <div class="item-child"></div>
+            <div class="item-child"></div>
+        </div>
+        <div class="ks-curve-item">
+            <div class="item-child">3</div>
+            <div class="item-child"></div>
+            <div class="item-child"></div>
+        </div>
+    </div>
+</div>
+
+<input type="range" id="curveRange" max="30" min="0">
+
+<script>
+    var S = KISSY;
+    if (S.Config.debug) {
+        var debugPath = "../build";
+        S.config({
+            packages:[
+                {
+                    name:"kg/curve/1.0.1",
+                    path:debugPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+
+    S.use('kg/curve/1.0.1/index', function (S, Curve) {
+
+        var tpl = '<div class="ks-curve-item">'+
+                '<div class="item-child">{index}</div><div class="item-child"></div><div class="item-child"></div>'+
+                '</div>';
+
+        var html = '';
+        for(var i = 0 ;i < 7 ;i++){
+            html += S.substitute(tpl, {
+                index : i
+            });
+        }
+
+        S.one('.ks-curve-stage').html(html);
+
+        var curve = new Curve({
+            container : S.one('.ks-curve'),
+            perspective : 500,
+            load : true
+        });
+
+
+        var first = 0;
+        var last = 6;
+
+        curve.on('load', function(e){
+            var num = e.num;
+            var html = '';
+            var i = 0;
+
+            if(e.loadType == 'append'){
+
+                for( i = 0 ; i< num ; i++){
+                    html += S.substitute(tpl , {
+                        index : ++last
+                    });
+                }
+
+                e.callback(html);
+
+            }else if(e.loadType == "prepend"){
+
+                for(i = num ; i > 0 ; i--){
+                    html += S.substitute(tpl , {
+                        index : (first - i)
+                    });
+                }
+
+                first -= num;
+
+                setTimeout(function(){
+                    e.callback(html)
+                },500);
+
+            }
+
+        });
+
+        var ranger = S.one("#curveRange");
+
+        ranger.attr({
+            'min': -60,
+            'max': 180,
+            'value': curve.get('range').cur
+        });
+
+        ranger.on("valuechange", function(){
+            var v = ranger.val();
+            curve.rotate(v);
+        });
+    });
+</script>
+
+</body>
+</html>
