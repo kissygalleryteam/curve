@@ -15,6 +15,7 @@
         .ks-curve-item{
             float: left;
             border: 1px solid #a0a0a0;
+            -webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(250, 250, 250, 0.1)));
         }
         .item-child{
             height: 150px;
@@ -87,7 +88,7 @@
 
         var curve = new Curve({
             container : S.one('.ks-curve'),
-            perspective : 600,
+            perspective : 500,
             load : true
         });
 

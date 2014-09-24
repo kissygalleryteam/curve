@@ -15,7 +15,7 @@ Curve。
 
 初始化
 
-    S.use('kg/curve/1.0.0/index', function (S, Curve) {
+    S.use('kg/curve/1.0.2/index', function (S, Curve) {
         var curve = new Curve();
     })
 
@@ -39,7 +39,7 @@ Curve。
 对于需要在容器内恰好展示指定元素个数的需求，可自行调整宽高，组件暂无封装方法
 
 ### 旋转曲面
-[demo](../demo/normal)
+[demo](../demo/normal.html)
 
 curve.rotate(旋转角度)
 
@@ -55,7 +55,7 @@ curve.rotate(旋转角度)
 
 ### 动态加载
 
-[demo](../demo/load)
+[demo](../demo/load.html)
 
 初始化配置load为true
 
