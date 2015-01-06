@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>curve</title>
+    <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com-prettify.css">
+    <link rel="stylesheet" href="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com.css">
+    <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdn.staticfile.org/prettify/r298/prettify.min.js"></script>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.8/seed-min.js" data-config="{combine:true}"></script>
+  </head>
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <div id="header"><a href="http://docs.kissyui.com/" class="logo">kissy</a>
+      <nav><a href="http://docs.kissyui.com/1.4/docs/html/coms.html">优秀组件推荐</a></nav>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3 bs-docs-sidebar">
+          <ul data-spy="affix" data-offset-top="0" class="nav nav-list bs-docs-sidenav"></ul>
+        </div>
+        <div class="span9 bs-docs-content">
+          <h1 data-id="undefined" class="title">curve</h1>
+          <p class="author-wrapper"><span>组件有问题？旺旺联系作者：</span><a href="https://github.com/haidaochen" target="_blank" data-name="水澜" class="author"><img src="https://avatars.githubusercontent.com/u/1303018?v=2&amp;s=60" alt="水澜"></a><span class="author-name">水澜</span>
+          </p>
+          <div class="common-link"><a href="../demo/index.html" target="_blank" class="demo">示例</a><a href="https://github.com/kissygalleryteam/curve" target="_blank" class="source">源码</a></div>
+          <p class="com-info"><span class="info-label">View</span><span data-com="curve" class="J_View">587</span></p>
+          <p class="com-info"><span class="info-label">所属分类</span><a href="http://kpm.taobao.net/list/UI">UI</a>
+          </p>
+          <p class="com-info"><span class="info-label">kissy版本</span><span>1.4.X</span>
+          </p><h2 id="-">综述</h2>
+<p>Curve。</p>
+<h2 id="-">初始化组件</h2>
+<pre><code>&lt;div class=&quot;ks-curve&quot;&gt;
+    &lt;div class=&quot;ks-curve-stage&quot;&gt;
+        &lt;div class=&quot;ks-curve-item&quot;&gt;...&lt;/div&gt;
+        &lt;div class=&quot;ks-curve-item&quot;&gt;...&lt;/div&gt;
+        &lt;div class=&quot;ks-curve-item&quot;&gt;...&lt;/div&gt;
+        &lt;div class=&quot;ks-curve-item&quot;&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>初始化</p>
+<pre><code>S.use(&#39;kg/curve/1.0.2/index&#39;, function (S, Curve) {
+    var curve = new Curve();
+})
+</code></pre><h2 id="api-">API说明</h2>
+<p>可选参数：</p>
+<pre><code>container : 外层容器，默认值 &#39;.ks-curve&#39;
+stage: item外层，默认值  &#39;.ks-curve-stage&#39;
+item : 列，默认值 &#39;.ks-curve-item&#39;
+perspective: 设置容器透视效果，默认值  800
+step : 每个面的递增旋转角度，即单边所对圆心角，默认值 5
+load: 曲面旋转到边界时，是否需要异步加载数据，默认值  false
+</code></pre><p>注意：</p>
+<p>容器宽高和单列的宽高需要自行在样式中设定</p>
+<p>组件按固定曲度，将已有节点调整为曲面展示，因此可能有部分节点会展示到容器外部，可结合rotate方法，旋转曲面</p>
+<p>对于需要在容器内恰好展示指定元素个数的需求，可自行调整宽高，组件暂无封装方法</p>
+<h3 id="-">旋转曲面</h3>
+<p><a href="../demo/normal.html">demo</a></p>
+<p>curve.rotate(旋转角度)</p>
+<p>实例化组件后，通过<code>curve.get(&#39;range&#39;)</code> 方法可获得曲面的可选择范围</p>
+<pre><code>{
+    min : 最小可选择角度 即第一个元素贴紧容器左边界的情况
+    max: 最大可选择角度 即最后一个元素贴紧容器右边界的情况
+    cur : 当前旋转角度
+}
+</code></pre><h3 id="-">动态加载</h3>
+<p><a href="../demo/load.html">demo</a></p>
+<p>初始化配置load为true</p>
+<p>当曲面旋转到左右边界时，会触发load事件</p>
+<p>参数：</p>
+<ul>
+<li><p>num：当前旋转角度需加载的元素个数</p>
+</li>
+<li><p>type：prepend || append  往前/后追加</p>
+</li>
+<li><p>callback： 回传需新渲染元素的html</p>
+</li>
+</ul>
+<h3 id="-">缩放</h3>
+<p>设置container的scale值</p>
+
+          <div style="display:none;"><script type="text/javascript" src="http://tajs.qq.com/stats?sId=36378479" charset="UTF-8"></script></div>
+          <script src="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com.js"></script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
